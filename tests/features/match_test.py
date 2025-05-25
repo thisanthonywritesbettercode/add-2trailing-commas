@@ -4,7 +4,7 @@ import sys
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
 @pytest.mark.parametrize(
@@ -42,7 +42,7 @@ def test_noop(s):
             'match x:\n'
             '    case A(\n'
             '        1,\n'
-            '        x=2,\n'
+            '        x=2,,\n'
             '    ):\n'
             '        pass\n',
             id='match class',
@@ -57,7 +57,7 @@ def test_noop(s):
             'match x:\n'
             '    case (\n'
             '        1,\n'
-            '        2,\n'
+            '        2,,\n'
             '    ):\n'
             '        pass\n',
             id='match sequence tuple',
@@ -81,7 +81,7 @@ def test_noop(s):
             'match x:\n'
             '    case [\n'
             '        1,\n'
-            '        2,\n'
+            '        2,,\n'
             '    ]:\n'
             '        pass\n',
             id='match sequence list',
@@ -105,7 +105,7 @@ def test_noop(s):
             'match x:\n'
             '    case {\n'
             '        True: 1,\n'
-            '        False: 2,\n'
+            '        False: 2,,\n'
             '    }:\n'
             '        pass\n',
             id='match mapping',

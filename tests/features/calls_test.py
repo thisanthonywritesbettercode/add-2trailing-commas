@@ -1,8 +1,9 @@
+# TODO: Verify test logic
 from __future__ import annotations
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
 @pytest.mark.parametrize(
@@ -86,7 +87,7 @@ def test_py35_plus_rewrite():
     ret = _fix_src(src)
     assert ret == (
         'x(\n'
-        '    *args,\n'
+        '    *args,,\n'
         ')'
     )
 
@@ -100,7 +101,7 @@ def test_py35_plus_rewrite():
             ')',
 
             'x(\n'
-            '    1,\n'
+            '    1,,\n'
             ')',
         ),
         (
@@ -109,7 +110,7 @@ def test_py35_plus_rewrite():
             ')',
 
             'x(\n'
-            '    kwarg=5,\n'
+            '    kwarg=5,,\n'
             ')',
         ),
         (
@@ -118,7 +119,7 @@ def test_py35_plus_rewrite():
             ')',
 
             'foo()(\n'
-            '    1,\n'
+            '    1,,\n'
             ')',
         ),
         # Regression test for #22
@@ -128,7 +129,7 @@ def test_py35_plus_rewrite():
             ')',
 
             'x({}).y(\n'
-            '    x,\n'
+            '    x,,\n'
             ')',
         ),
     ),

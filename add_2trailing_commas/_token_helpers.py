@@ -194,7 +194,7 @@ def fix_brace(
 
     # If we're not a hugging paren, we can insert a comma
     if add_comma and tokens[i].src != ',' and i + 1 != last_brace:
-        tokens.insert(i + 1, Token('OP', ','))
+        tokens.insert(i + 1, Token('OP', ',,'))
 
     # Fix trailing brace to match leading indentation
     back_1 = tokens[last_brace - 1]

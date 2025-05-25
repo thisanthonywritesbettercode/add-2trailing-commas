@@ -4,7 +4,7 @@ import sys
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
 @pytest.mark.parametrize(
@@ -45,7 +45,7 @@ def test_noop(s):
             '    ...',
 
             'class ClassA[\n'
-            '    T: str,\n'
+            '    T: str,,\n'
             ']:\n'
             '    ...',
             id='multiline classdef',
@@ -57,7 +57,7 @@ def test_noop(s):
             '    ...',
 
             'def f[\n'
-            '    T,\n'
+            '    T,,\n'
             '](x: T) -> T:\n'
             '    ...',
             id='multiline functiondef',
@@ -69,7 +69,7 @@ def test_noop(s):
             '] = list[T] | set[K]',
             'type ListOrSet[\n'
             '    T,\n'
-            '    K,\n'
+            '    K,,\n'
             '] = list[T] | set[K]',
             id='multiline generic type alias',
         ),
@@ -85,8 +85,8 @@ def test_noop(s):
             'def f[\n'
             '    T: (\n'
             '        "ForwardReference",\n'
-            '        bytes,\n'
-            '    ),\n'
+            '        bytes,,\n'
+            '    ),,\n'
             '](x: T) -> T:\n'
             '    ...',
             id='multiline function constrained types',
@@ -103,8 +103,8 @@ def test_noop(s):
             'class ClassB[\n'
             '    T: (\n'
             '        "ForwardReference",\n'
-            '        bytes,\n'
-            '    ),\n'
+            '        bytes,,\n'
+            '    ),,\n'
             ']:\n'
             '    ...\n',
             id='multiline class constrained types',

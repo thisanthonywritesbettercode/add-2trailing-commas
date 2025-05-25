@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
+# FIXME
 @pytest.mark.parametrize(
     'src',
     (
@@ -29,7 +30,7 @@ def test_noop_function_defs(src):
             '): pass',
 
             'def f(\n'
-            '        x,\n'
+            '        x,,\n'
             '): pass',
         ),
         pytest.param(
@@ -37,7 +38,7 @@ def test_noop_function_defs(src):
             '        x\n'
             '): pass',
             'async def f(\n'
-            '        x,\n'
+            '        x,,\n'
             '): pass',
             id='async def',
         ),
@@ -56,7 +57,7 @@ def test_fixes_defs(src, expected):
             '): pass',
 
             'def f(\n'
-            '    *args,\n'
+            '    *args,,\n'
             '): pass',
         ),
         (
@@ -65,7 +66,7 @@ def test_fixes_defs(src, expected):
             '): pass',
 
             'def f(\n'
-            '    **kwargs,\n'
+            '    **kwargs,,\n'
             '): pass',
         ),
         (
@@ -74,7 +75,7 @@ def test_fixes_defs(src, expected):
             '): pass',
 
             'def f(\n'
-            '    *, kw=1,\n'
+            '    *, kw=1,,\n'
             '): pass',
         ),
     ),
@@ -92,7 +93,7 @@ def test_fixes_defs_py36_plus(src, expected):
             '): pass\n',
 
             'def f(\n'
-            '    x, /,\n'
+            '    x, /,,\n'
             '): pass\n',
         ),
     ),

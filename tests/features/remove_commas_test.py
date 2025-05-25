@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
 @pytest.mark.parametrize(

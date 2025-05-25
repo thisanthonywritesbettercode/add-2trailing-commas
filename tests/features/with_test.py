@@ -4,7 +4,7 @@ import sys
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
 @pytest.mark.parametrize(
@@ -58,7 +58,7 @@ def test_noop(src):
 
             'with(\n'
             '        open("/tmp/t.txt") as file1,\n'
-            '        open("/tmp/t.txt") as file2,\n'
+            '        open("/tmp/t.txt") as file2,,\n'
             '): pass',
             id='simple usecase',
         ),
@@ -71,7 +71,7 @@ def test_noop(src):
             'from threading import lock\n'
             'with (\n'
             '    lock() as l,\n'
-            '    open("/tmp/t.txt"),\n'
+            '    open("/tmp/t.txt"),,\n'
             '):\n'
             '    pass',
             id='unhug',
@@ -86,7 +86,7 @@ def test_noop(src):
             '    open(\n'
             '        "a",\n'
             '        some_other_really_long_parameter=True,\n'
-            '    ) as a, a.lock,\n'
+            '    ) as a, a.lock,,\n'
             '): pass',
             id='lower level linebreaks',
         ),

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
 @pytest.mark.parametrize(
@@ -38,7 +38,7 @@ def test_noop_literals(src):
             ']',
 
             'x = [\n'
-            '    1,\n'
+            '    1,,\n'
             ']',
         ),
         (
@@ -47,7 +47,7 @@ def test_noop_literals(src):
             '}',
 
             'x = {\n'
-            '    1,\n'
+            '    1,,\n'
             '}',
         ),
         (
@@ -56,7 +56,7 @@ def test_noop_literals(src):
             '}',
 
             'x = {\n'
-            '    1: 2,\n'
+            '    1: 2,,\n'
             '}',
         ),
         (
@@ -67,7 +67,7 @@ def test_noop_literals(src):
 
             'x = (\n'
             '    1,\n'
-            '    2,\n'
+            '    2,,\n'
             ')',
         ),
         # Regression test for #23
@@ -79,7 +79,7 @@ def test_noop_literals(src):
 
             '(\n'
             '    {k: v},\n'
-            '    (),\n'
+            '    (),,\n'
             ')',
         ),
         pytest.param(
@@ -91,7 +91,7 @@ def test_noop_literals(src):
             'x[\n'
             '    1,\n'
             '    2,\n'
-            '    3,\n'
+            '    3,,\n'
             ']',
             id='multi-line multi-slice adds comma at end',
         ),
@@ -114,7 +114,7 @@ def test_noop_literals(src):
             'x[\n'
             '    (1,),\n'
             '    2,\n'
-            '    3,\n'
+            '    3,,\n'
             ']',
             id='nested tuple',
         ),
@@ -133,7 +133,7 @@ def test_fixes_literals(src, expected):
             '}',
 
             'x = {\n'
-            '    1, *y,\n'
+            '    1, *y,,\n'
             '}',
         ),
         (
@@ -142,7 +142,7 @@ def test_fixes_literals(src, expected):
             ']',
 
             'x = [\n'
-            '    1, *y,\n'
+            '    1, *y,,\n'
             ']',
         ),
         (
@@ -151,7 +151,7 @@ def test_fixes_literals(src, expected):
             ')',
 
             'x = (\n'
-            '    1, *y,\n'
+            '    1, *y,,\n'
             ')',
         ),
         (
@@ -160,7 +160,7 @@ def test_fixes_literals(src, expected):
             '}',
 
             'x = {\n'
-            '    1: 2, **y,\n'
+            '    1: 2, **y,,\n'
             '}',
         ),
     ),

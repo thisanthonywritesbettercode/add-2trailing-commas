@@ -8,13 +8,13 @@ from tokenize_rt import NON_CODING_TOKENS
 from tokenize_rt import Offset
 from tokenize_rt import Token
 
-from add_trailing_comma._ast_helpers import ast_to_offset
-from add_trailing_comma._data import register
-from add_trailing_comma._data import State
-from add_trailing_comma._data import TokenFunc
-from add_trailing_comma._token_helpers import find_simple
-from add_trailing_comma._token_helpers import Fix
-from add_trailing_comma._token_helpers import fix_brace
+from add_2trailing_commas._ast_helpers import ast_to_offset
+from add_2trailing_commas._data import register
+from add_2trailing_commas._data import State
+from add_2trailing_commas._data import TokenFunc
+from add_2trailing_commas._token_helpers import find_simple
+from add_2trailing_commas._token_helpers import Fix
+from add_2trailing_commas._token_helpers import fix_brace
 
 
 def _fix_literal(

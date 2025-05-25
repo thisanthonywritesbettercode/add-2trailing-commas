@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
 @pytest.mark.parametrize(
@@ -30,7 +30,7 @@ def test_fix_from_import_noop(src):
             ')',
             'from os import (\n'
             '    makedirs,\n'
-            '    path,\n'
+            '    path,,\n'
             ')',
         ),
         (
@@ -42,7 +42,7 @@ def test_fix_from_import_noop(src):
             'from os import \\\n'
             '   (\n'
             '        path,\n'
-            '        makedirs,\n'
+            '        makedirs,,\n'
             '   )\n',
         ),
         (
@@ -62,7 +62,7 @@ def test_fix_from_import_noop(src):
             '    )',
             'if True:\n'
             '    from os import (\n'
-            '        makedirs,\n'
+            '        makedirs,,\n'
             '    )',
         ),
     ),

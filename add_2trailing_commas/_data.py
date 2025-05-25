@@ -12,7 +12,7 @@ from typing import TypeVar
 from tokenize_rt import Offset
 from tokenize_rt import Token
 
-from add_trailing_comma import _plugins
+from add_2trailing_commas import _plugins
 
 
 class State(NamedTuple):

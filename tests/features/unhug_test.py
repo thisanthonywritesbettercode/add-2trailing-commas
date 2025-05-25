@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
 
 
 @pytest.mark.parametrize(
@@ -45,7 +45,7 @@ def test_noop_unhugs(src):
             '    a)',
 
             'f(\n'
-            '    a,\n'
+            '    a,,\n'
             ')',
         ),
         (
@@ -53,7 +53,7 @@ def test_noop_unhugs(src):
             ')',
 
             'f(\n'
-            '    a,\n'
+            '    a,,\n'
             ')',
         ),
         (
@@ -74,7 +74,7 @@ def test_noop_unhugs(src):
             'f(\n'
             '    a,\n'
             '    b,\n'
-            '    c,\n'
+            '    c,,\n'
             ')',
         ),
         (
@@ -82,7 +82,7 @@ def test_noop_unhugs(src):
             '    *args): pass',
 
             'def f(\n'
-            '    *args,\n'
+            '    *args,,\n'
             '): pass',
         ),
         (
@@ -90,7 +90,7 @@ def test_noop_unhugs(src):
             '    **kwargs): pass',
 
             'def f(\n'
-            '    **kwargs,\n'
+            '    **kwargs,,\n'
             '): pass',
         ),
         # if there's already a trailing comma, don't add a new one
@@ -110,7 +110,7 @@ def test_noop_unhugs(src):
 
             'with a(\n'
             '    b,\n'
-            '    c,\n'
+            '    c,,\n'
             '):\n'
             '    pass',
         ),
@@ -124,7 +124,7 @@ def test_noop_unhugs(src):
             'if True:\n'
             '    with a(\n'
             '        b,\n'
-            '        c,\n'
+            '        c,,\n'
             '    ):\n'
             '        pass',
         ),
@@ -163,7 +163,7 @@ def test_noop_unhugs(src):
             '    *args)',
 
             'f(\n'
-            '    *args,\n'
+            '    *args,,\n'
             ')',
         ),
         (
@@ -172,7 +172,7 @@ def test_noop_unhugs(src):
 
             '{\n'
             '    "foo": a[0],\n'
-            '    "bar": a[1],\n'
+            '    "bar": a[1],,\n'
             '}',
         ),
         (
@@ -187,7 +187,7 @@ def test_noop_unhugs(src):
             '        a,\n'
             '    ), f(\n'
             '        a,\n'
-            '    ),\n'
+            '    ),,\n'
             ')',
         ),
         (
@@ -199,12 +199,12 @@ def test_noop_unhugs(src):
             'x = [\n'
             '    long_function_name(\n'
             '        arg,\n'
-            '        arg,\n'
+            '        arg,,\n'
             '    ),\n'
             '    long_function_name(\n'
             '        arg,\n'
-            '        arg,\n'
-            '    ),\n'
+            '        arg,,\n'
+            '    ),,\n'
             ']',
         ),
         (
@@ -229,7 +229,7 @@ def test_noop_unhugs(src):
             '        "bar",\n'
             '\n'
             '        "baz",\n'
-            '    ),\n'
+            '    ),,\n'
             ')',
         ),
         # Regression test for #16
@@ -239,7 +239,7 @@ def test_noop_unhugs(src):
 
             'x(\n'
             '    "foo"\n'
-            '    "bar",\n'
+            '    "bar",,\n'
             ')',
         ),
         # Regression test for #29
@@ -250,8 +250,8 @@ def test_noop_unhugs(src):
             'x = (\n'
             '    [\n'
             '        a,\n'
-            '        b,\n'
-            '    ], None,\n'
+            '        b,,\n'
+            '    ], None,,\n'
             ')',
         ),
         # Regression test for #32
@@ -287,7 +287,7 @@ def test_noop_unhugs(src):
             '    *, kw=1, kw2=2): pass',
 
             'def f(\n'
-            '    *, kw=1, kw2=2,\n'
+            '    *, kw=1, kw2=2,,\n'
             '): pass',
         ),
     ),

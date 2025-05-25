@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import pytest
 
-from add_trailing_comma._main import _fix_src
+from add_2trailing_commas._main import _fix_src
+
+# FIXME
 
 
 @pytest.mark.parametrize(
@@ -28,7 +30,7 @@ def test_fix_classes_noop(src):
             '    object\n'
             '): pass',
             'class C(\n'
-            '    object,\n'
+            '    object,,\n'
             '): pass',
         ),
     ),
@@ -47,7 +49,7 @@ def test_fix_classes(src, expected):
             '): pass',
             'bases = (object,)\n'
             'class C(\n'
-            '    *bases,\n'
+            '    *bases,,\n'
             '): pass',
         ),
         (
@@ -57,7 +59,7 @@ def test_fix_classes(src, expected):
             '): pass',
             'kws = {"metaclass": type}\n'
             'class C(\n'
-            '    **kws,\n'
+            '    **kws,,\n'
             '): pass',
         ),
         (
@@ -65,7 +67,7 @@ def test_fix_classes(src, expected):
             '    metaclass=type\n'
             '): pass',
             'class C(\n'
-            '    metaclass=type,\n'
+            '    metaclass=type,,\n'
             '): pass',
         ),
     ),

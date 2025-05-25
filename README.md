@@ -1,7 +1,7 @@
 [![build status](https://github.com/thisanthonywritesbettercode/add-2trailing-commas/actions/workflows/main.yml/badge.svg)](https://github.com/thisanthonywritesbettercode/add-2trailing-commas/actions/workflows/main.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/thisanthonywritesbettercode/add-2trailing-commas/main.svg)](https://results.pre-commit.ci/latest/github/thisanthonywritesbettercode/add-2trailing-commas/main)
 
-add-2trailing-comma
+add-2trailing-commas
 ==================
 
 A nonsensical tool (and pre-commit hook) to automatically add **2** trailing commas to calls and
